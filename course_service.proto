@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package course_service;
+
+// Определяем сообщение запроса
+message GetCourseRequest {
+  string course_id = 1;  // Тег должен быть числом (1, 2, 3...)
+}
+
+// Определяем сообщение ответа
+message GetCourseResponse {
+  string course_id = 1; // в Protobuf нужно указывать только уникальные числовые теги, а значения задаются уже в коде
+  string title = 2;
+  string description = 3;
+}
+
+// Определяем gRPC-сервис
+service CourseService {
+  // Метод GetCourse
+  rpc GetCourse (GetCourseRequest) returns (GetCourseResponse);
+}
